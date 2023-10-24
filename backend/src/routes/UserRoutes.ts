@@ -10,5 +10,6 @@ const userController:UserController = new UserController(userService);
 
 routes.get('/users', userController.findAllUsers.bind(userController));
 routes.get('/users/:id', userController.findUserById.bind(userController));
+routes.post('/users', userController.createUser.bind(userController));
 
 export default routes;

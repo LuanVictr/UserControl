@@ -26,6 +26,10 @@ class UserService {
     return personOptional;
   }
 
+  public async createUser(newUser:IUser):Promise<IUser> {
+    return this.userModel.createUser(newUser);
+  }
+
 }
 
 export default UserService;

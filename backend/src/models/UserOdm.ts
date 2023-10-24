@@ -24,6 +24,10 @@ class UserOdm {
   public async findUserById(userId:number):Promise<IUser | null> {
     return this.model.findById(userId);
   }
+
+  public async createUser(newUser:IUser):Promise<IUser> {
+    return this.model.create({ ...newUser });
+  }
 }
 
 export default UserOdm;
