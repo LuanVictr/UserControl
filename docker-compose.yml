@@ -4,14 +4,24 @@ services:
     container_name: app-frontend
     build: ./frontend
     ports:
-      - 3000:3000
+      - 8080:80
     working_dir: /app-frontend
     volumes:
-      - ./frontend:app-frontend
+      - ./frontend:/app-frontend
+  backend:
+    container_name: app-backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    working_dir: /app-backend
+    volumes:
+      - ./backend:/app-backend
+    environment:
+      - PORT=3001
   mongodb:
     container_name: user_control_db
     image: mongo:5.0.7
     ports:
       - 27017:27017
     environment:
-      - MONGO_URI='mongodb://localhost:27017/usercontrol'
+      - MONGO_URI='mongodb://mongodb:27017/usercontrol'
