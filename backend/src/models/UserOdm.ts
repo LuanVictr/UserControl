@@ -15,7 +15,10 @@ class UserOdm {
     }, { versionKey: false });
 
     this.model = models[this.modelName] || model(this.modelName, schema);
+  }
 
+  public async findAllUsers():Promise<IUser[]> {
+    return this.model.find();
   }
 }
 
