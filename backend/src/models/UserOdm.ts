@@ -20,6 +20,10 @@ class UserOdm {
   public async findAllUsers():Promise<IUser[]> {
     return this.model.find();
   }
+
+  public async findUserById(userId:number):Promise<IUser | null> {
+    return this.model.findById(userId);
+  }
 }
 
 export default UserOdm;

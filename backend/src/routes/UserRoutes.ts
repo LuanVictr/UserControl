@@ -9,5 +9,6 @@ const userService:UserService = new UserService(userOdm);
 const userController:UserController = new UserController(userService);
 
 routes.get('/users', userController.findAllUsers.bind(userController));
+routes.get('/users/:id', userController.findUserById.bind(userController));
 
 export default routes;

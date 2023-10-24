@@ -18,6 +18,18 @@ class UserController {
     return res.status(HttpStatus.OK).json(result);
   }
 
+  public async findUserById(req: Request, res: Response) {
+    try {
+      const userId:number = parseInt(req.params.id, 10);
+      const personFound = this.userService.findUserById(userId);
+
+      res.status(HttpStatus.OK).json(personFound);
+
+    } catch (exception:any) {
+      res.status(HttpStatus.NOT_FOUND).json({ message: exception.message });
+    }
+  }
+
 }
 
 export default UserController;
