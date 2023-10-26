@@ -191,6 +191,54 @@
         "wires": []
     },
     {
+        "id": "882d182e212b1ff1",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "Create user",
+        "url": "/users",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "e7d6559a84b26e21"
+            ]
+        ]
+    },
+    {
+        "id": "e7d6559a84b26e21",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "6824b1774664e368"
+            ]
+        ]
+    },
+    {
+        "id": "6824b1774664e368",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Created",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1180,
+        "y": 240,
+        "wires": []
+    },
+    {
         "id": "b854cddf765319fc",
         "type": "mongodb4-client",
         "name": "usercontrol",
