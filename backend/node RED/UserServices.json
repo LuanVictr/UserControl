@@ -239,6 +239,145 @@
         "wires": []
     },
     {
+        "id": "e6a4608046db986b",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "Update user",
+        "url": "/users/:id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "bb2f11387e3d3057"
+            ]
+        ]
+    },
+    {
+        "id": "a8a58a9f8b39d8b0",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "updateMany",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "8da2cc29aae1e486"
+            ]
+        ]
+    },
+    {
+        "id": "bb2f11387e3d3057",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "Query",
+        "func": "msg.body = msg.payload;\nmsg.payload = [\n    {\n        _id: msg.req.params.id}, {\n            $set: {\n\n                email: msg.body.email,\n                password: msg.body.password,\n                role: msg.body.role,\n\n                }\n            \n            }\n    \n    ]\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "a8a58a9f8b39d8b0"
+            ]
+        ]
+    },
+    {
+        "id": "967a7605b94d1306",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Sucesso",
+        "statusCode": "",
+        "headers": {},
+        "x": 1180,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8da2cc29aae1e486",
+        "type": "switch",
+        "z": "915c7577a0efe750",
+        "name": "Check if was updated",
+        "property": "payload.matchedCount",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "967a7605b94d1306"
+            ],
+            [
+                "9a121c66bc0ad414"
+            ]
+        ]
+    },
+    {
+        "id": "9a121c66bc0ad414",
+        "type": "change",
+        "z": "915c7577a0efe750",
+        "name": "Trata o retorno do 404",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Usuário não encontrado!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 400,
+        "wires": [
+            [
+                "ff1fd1440fc57673"
+            ]
+        ]
+    },
+    {
+        "id": "ff1fd1440fc57673",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1190,
+        "y": 400,
+        "wires": []
+    },
+    {
         "id": "b854cddf765319fc",
         "type": "mongodb4-client",
         "name": "usercontrol",
