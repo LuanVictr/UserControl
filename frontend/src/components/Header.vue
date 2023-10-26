@@ -6,6 +6,9 @@
     methods: {
       navigateToLogin() {
         this.$router.push({ path: "/login" });
+      },
+      navigateToSignUp() {
+        this.$router.push({ path: "/sign" });
       }
     }
   })
@@ -13,32 +16,22 @@
 </script>
 
 <template>
-  <div class='header'>
-    <p>imagem</p>
-    <nav class='navbar'>
-      <button
-        class='button is-ghost is-rounded'
-        @click="navigateToLogin"
-       >
-        Login
-      </button>
-    </nav>
-  </div>
+  <header>
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-one-third">
+          <img src='../assets/usercontrol-logo.png' alt="Logotipo" style="max-width: 100%; height: 100px;">
+        </div>
 
+        <div class="column is-two-thirds has-text-right">
+          <button class="button is-primary" @click="navigateToLogin">Login</button>
+          <button class="button is-ghost" @click="navigateToSignUp">Cadastre-se</button>
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
 
 <style scoped>
-
-  .header { 
-    align-items: center;
-    height: 70px;
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid black;
-  }
-
-  .header button {
-    margin-top: 6px;
-  }
 
 </style>
