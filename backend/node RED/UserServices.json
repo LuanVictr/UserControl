@@ -36,26 +36,6 @@
         "wires": []
     },
     {
-        "id": "bcf235e544d3c2fa",
-        "type": "mongodb4",
-        "z": "915c7577a0efe750",
-        "clientNode": "b854cddf765319fc",
-        "mode": "collection",
-        "collection": "users",
-        "operation": "find",
-        "output": "toArray",
-        "maxTimeMS": "0",
-        "handleDocId": false,
-        "name": "find all users",
-        "x": 290,
-        "y": 60,
-        "wires": [
-            [
-                "5febd54f1d4a26e8"
-            ]
-        ]
-    },
-    {
         "id": "afe4fb25560223e7",
         "type": "http in",
         "z": "915c7577a0efe750",
@@ -107,26 +87,6 @@
         "wires": [
             [
                 "95a25433753e956c"
-            ]
-        ]
-    },
-    {
-        "id": "aa3693e04c6cf012",
-        "type": "mongodb4",
-        "z": "915c7577a0efe750",
-        "clientNode": "b854cddf765319fc",
-        "mode": "collection",
-        "collection": "users",
-        "operation": "findOne",
-        "output": "toArray",
-        "maxTimeMS": "0",
-        "handleDocId": true,
-        "name": "",
-        "x": 420,
-        "y": 160,
-        "wires": [
-            [
-                "4fb0955ea4d2b902"
             ]
         ]
     },
@@ -208,26 +168,6 @@
         ]
     },
     {
-        "id": "e7d6559a84b26e21",
-        "type": "mongodb4",
-        "z": "915c7577a0efe750",
-        "clientNode": "b854cddf765319fc",
-        "mode": "collection",
-        "collection": "users",
-        "operation": "insertOne",
-        "output": "toArray",
-        "maxTimeMS": "0",
-        "handleDocId": true,
-        "name": "",
-        "x": 420,
-        "y": 240,
-        "wires": [
-            [
-                "6824b1774664e368"
-            ]
-        ]
-    },
-    {
         "id": "6824b1774664e368",
         "type": "http response",
         "z": "915c7577a0efe750",
@@ -252,26 +192,6 @@
         "wires": [
             [
                 "bb2f11387e3d3057"
-            ]
-        ]
-    },
-    {
-        "id": "a8a58a9f8b39d8b0",
-        "type": "mongodb4",
-        "z": "915c7577a0efe750",
-        "clientNode": "b854cddf765319fc",
-        "mode": "collection",
-        "collection": "users",
-        "operation": "updateMany",
-        "output": "toArray",
-        "maxTimeMS": "0",
-        "handleDocId": true,
-        "name": "",
-        "x": 430,
-        "y": 400,
-        "wires": [
-            [
-                "8da2cc29aae1e486"
             ]
         ]
     },
@@ -395,26 +315,6 @@
         ]
     },
     {
-        "id": "7513144dc244904c",
-        "type": "mongodb4",
-        "z": "915c7577a0efe750",
-        "clientNode": "b854cddf765319fc",
-        "mode": "collection",
-        "collection": "users",
-        "operation": "deleteMany",
-        "output": "toArray",
-        "maxTimeMS": "0",
-        "handleDocId": true,
-        "name": "",
-        "x": 430,
-        "y": 480,
-        "wires": [
-            [
-                "ddf183a93cf9ef5b"
-            ]
-        ]
-    },
-    {
         "id": "5202fd5b196aa9a1",
         "type": "http response",
         "z": "915c7577a0efe750",
@@ -513,6 +413,282 @@
         "wires": [
             [
                 "36cdabb0ba46e9db"
+            ]
+        ]
+    },
+    {
+        "id": "bcf235e544d3c2fa",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "find",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "find all users",
+        "x": 290,
+        "y": 60,
+        "wires": [
+            [
+                "5febd54f1d4a26e8"
+            ]
+        ]
+    },
+    {
+        "id": "aa3693e04c6cf012",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "findOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "4fb0955ea4d2b902"
+            ]
+        ]
+    },
+    {
+        "id": "e7d6559a84b26e21",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "6824b1774664e368"
+            ]
+        ]
+    },
+    {
+        "id": "a8a58a9f8b39d8b0",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "updateMany",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "8da2cc29aae1e486"
+            ]
+        ]
+    },
+    {
+        "id": "7513144dc244904c",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "deleteMany",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "ddf183a93cf9ef5b"
+            ]
+        ]
+    },
+    {
+        "id": "b94d1bca94ba48ea",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "login user",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 640,
+        "wires": [
+            [
+                "d686194c266cad3c"
+            ]
+        ]
+    },
+    {
+        "id": "b2c2e80f33165a2d",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "findOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 420,
+        "y": 640,
+        "wires": [
+            [
+                "744d7c9608a8a9c0"
+            ]
+        ]
+    },
+    {
+        "id": "d686194c266cad3c",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "Query",
+        "func": "msg.body = msg.payload;\nmsg.payload = [{email: msg.body.email, password: msg.body.password}];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 640,
+        "wires": [
+            [
+                "b2c2e80f33165a2d"
+            ]
+        ]
+    },
+    {
+        "id": "744d7c9608a8a9c0",
+        "type": "switch",
+        "z": "915c7577a0efe750",
+        "name": "Check if user was found",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 640,
+        "wires": [
+            [
+                "8ece45d17d0c75d4"
+            ],
+            [
+                "27e0dbc0cfa0eaae"
+            ]
+        ]
+    },
+    {
+        "id": "a1bd3bfdbaed9b45",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1190,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "8ece45d17d0c75d4",
+        "type": "change",
+        "z": "915c7577a0efe750",
+        "name": "Trata o retorno do 404",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Usuário não encontrado!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 600,
+        "wires": [
+            [
+                "a1bd3bfdbaed9b45"
+            ]
+        ]
+    },
+    {
+        "id": "7ebb37f724bb6aca",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1210,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "27e0dbc0cfa0eaae",
+        "type": "jwt sign",
+        "z": "915c7577a0efe750",
+        "name": "User JWT",
+        "alg": "HS256",
+        "exp": 3600,
+        "jwkurl": "",
+        "jwkkid": "",
+        "secret": "test",
+        "key": "",
+        "signvar": "payload",
+        "storetoken": "payload",
+        "x": 880,
+        "y": 660,
+        "wires": [
+            [
+                "7714ae33b671df08"
+            ]
+        ]
+    },
+    {
+        "id": "7714ae33b671df08",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "Format Response",
+        "func": "msg.token = msg.payload;\nmsg.payload = {\"token\": msg.token};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 660,
+        "wires": [
+            [
+                "7ebb37f724bb6aca"
             ]
         ]
     },
