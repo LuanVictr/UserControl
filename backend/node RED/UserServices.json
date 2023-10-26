@@ -598,7 +598,7 @@
                 "8ece45d17d0c75d4"
             ],
             [
-                "27e0dbc0cfa0eaae"
+                "0c2931521d57ddcc"
             ]
         ]
     },
@@ -609,7 +609,7 @@
         "name": "Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1190,
+        "x": 1370,
         "y": 600,
         "wires": []
     },
@@ -632,7 +632,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 940,
+        "x": 1120,
         "y": 600,
         "wires": [
             [
@@ -647,7 +647,7 @@
         "name": "OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1210,
+        "x": 1390,
         "y": 660,
         "wires": []
     },
@@ -664,7 +664,7 @@
         "key": "",
         "signvar": "payload",
         "storetoken": "payload",
-        "x": 880,
+        "x": 1040,
         "y": 660,
         "wires": [
             [
@@ -684,11 +684,31 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1050,
+        "x": 1230,
         "y": 660,
         "wires": [
             [
                 "7ebb37f724bb6aca"
+            ]
+        ]
+    },
+    {
+        "id": "0c2931521d57ddcc",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "function 1",
+        "func": "msg.payload = {\n    email: msg.payload.email,\n    role: msg.payload.role\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 660,
+        "wires": [
+            [
+                "27e0dbc0cfa0eaae"
             ]
         ]
     },
