@@ -378,6 +378,145 @@
         "wires": []
     },
     {
+        "id": "120abfcbef46e3fe",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "Delete user",
+        "url": "/users/:id",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 480,
+        "wires": [
+            [
+                "6588995d179e5b8d"
+            ]
+        ]
+    },
+    {
+        "id": "7513144dc244904c",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "deleteMany",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "ddf183a93cf9ef5b"
+            ]
+        ]
+    },
+    {
+        "id": "5202fd5b196aa9a1",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Deleted",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1180,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6588995d179e5b8d",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "Query",
+        "func": "msg.payload = [{_id: msg.req.params.id}]\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "7513144dc244904c"
+            ]
+        ]
+    },
+    {
+        "id": "ddf183a93cf9ef5b",
+        "type": "switch",
+        "z": "915c7577a0efe750",
+        "name": "Check if was deleted",
+        "property": "payload.deletedCount",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "5202fd5b196aa9a1"
+            ],
+            [
+                "b2bc253aaa6c64cd"
+            ]
+        ]
+    },
+    {
+        "id": "36cdabb0ba46e9db",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1190,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b2bc253aaa6c64cd",
+        "type": "change",
+        "z": "915c7577a0efe750",
+        "name": "Trata o retorno do 404",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Usuário não encontrado!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 500,
+        "wires": [
+            [
+                "36cdabb0ba46e9db"
+            ]
+        ]
+    },
+    {
         "id": "b854cddf765319fc",
         "type": "mongodb4-client",
         "name": "usercontrol",
