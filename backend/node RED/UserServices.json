@@ -1,0 +1,217 @@
+[
+    {
+        "id": "915c7577a0efe750",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5f5b9a6c552579ae",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "Get All Users",
+        "url": "/users",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "bcf235e544d3c2fa"
+            ]
+        ]
+    },
+    {
+        "id": "5febd54f1d4a26e8",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 730,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "bcf235e544d3c2fa",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "find",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "find all users",
+        "x": 290,
+        "y": 60,
+        "wires": [
+            [
+                "5febd54f1d4a26e8"
+            ]
+        ]
+    },
+    {
+        "id": "afe4fb25560223e7",
+        "type": "http in",
+        "z": "915c7577a0efe750",
+        "name": "Get user By Id",
+        "url": "/users/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "b06f28140cfe2ba6"
+            ]
+        ]
+    },
+    {
+        "id": "95a25433753e956c",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1190,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5a82c78e062341a8",
+        "type": "change",
+        "z": "915c7577a0efe750",
+        "name": "Trata o retorno do 404",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Usuário não encontrado!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 120,
+        "wires": [
+            [
+                "95a25433753e956c"
+            ]
+        ]
+    },
+    {
+        "id": "aa3693e04c6cf012",
+        "type": "mongodb4",
+        "z": "915c7577a0efe750",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "users",
+        "operation": "findOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": true,
+        "name": "",
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "4fb0955ea4d2b902"
+            ]
+        ]
+    },
+    {
+        "id": "b06f28140cfe2ba6",
+        "type": "function",
+        "z": "915c7577a0efe750",
+        "name": "Query",
+        "func": "msg.payload = [{_id: msg.req.params.id}];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "aa3693e04c6cf012"
+            ]
+        ]
+    },
+    {
+        "id": "4fb0955ea4d2b902",
+        "type": "switch",
+        "z": "915c7577a0efe750",
+        "name": "Check if user was found",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 160,
+        "wires": [
+            [
+                "5a82c78e062341a8"
+            ],
+            [
+                "90503ee28768805b"
+            ]
+        ]
+    },
+    {
+        "id": "90503ee28768805b",
+        "type": "http response",
+        "z": "915c7577a0efe750",
+        "name": "OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1170,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b854cddf765319fc",
+        "type": "mongodb4-client",
+        "name": "usercontrol",
+        "protocol": "mongodb",
+        "hostname": "localhost",
+        "port": "27017",
+        "dbName": "usercontrol",
+        "appName": "UserControl",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    }
+]
