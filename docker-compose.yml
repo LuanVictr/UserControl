@@ -27,3 +27,5 @@ services:
       - 27017:27017
     environment:
       - MONGO_URI='mongodb://mongodb:27017/usercontrol'
+    volumes:
+      - ./backend/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
