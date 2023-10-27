@@ -1,17 +1,36 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
+  import useUserStore from '../store/UserStore';
+  import { requestLogin } from '../utils/axios/axiosApi';
+
   export default defineComponent({
     name: 'Login',
       data() {
       return {
         email: '',
         password: '',
+        errorMessage: '',
       };
     },
     methods: {
-      login() {
-        console.log('E-mail:', this.email);
-        console.log('Senha:', this.password);
+      async login () {
+        const userStore = useUserStore();
+
+        try {
+          const body = {email: this.email, password: this.password};
+          const response = await requestLogin(body);
+          userStore.setUser(response.user);
+          userStore.setToken(response.token);
+          
+          if (response.user.role == "USER") {
+            this.$router.push('/address')
+          }
+
+        } catch (error) {
+          this.errorMessage = "Usuário ou senha inválidos";
+        }
+
+
       },
     },
   });
@@ -39,6 +58,7 @@
             <div class="control">
               <input class="input" type="password" v-model="password" placeholder="Sua senha">
             </div>
+            <p class="help is-danger">{{errorMessage}}</p>
           </div>
 
           <div class="field">
