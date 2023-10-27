@@ -6,16 +6,16 @@ import Sign from './components/Sign.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
-  
+
   { path: '/login', component: Login },
-  { path: '/', component: Login},
-  { path: '/sign', component: Sign  }
+  { path: '/', component: Login },
+  { path: '/sign', component: Sign }
 
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 const app = createApp(App);
@@ -23,5 +23,3 @@ const app = createApp(App);
 app.use(router);
 
 app.mount('#app');
-
-
