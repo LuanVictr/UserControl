@@ -1,0 +1,217 @@
+[
+    {
+        "id": "19d47d7565470dff",
+        "type": "tab",
+        "label": "AddressServices",
+        "disabled": false,
+        "info": "Fluxo destinado ao CRUD de endereços.",
+        "env": []
+    },
+    {
+        "id": "eefe6e2583b89d72",
+        "type": "http in",
+        "z": "19d47d7565470dff",
+        "name": "Get all adresses",
+        "url": "/address",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "420700625e0286a9"
+            ]
+        ]
+    },
+    {
+        "id": "420700625e0286a9",
+        "type": "mongodb4",
+        "z": "19d47d7565470dff",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "addresses",
+        "operation": "find",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Find All Addresses",
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "c7891bf47ea96d26"
+            ]
+        ]
+    },
+    {
+        "id": "c7891bf47ea96d26",
+        "type": "http response",
+        "z": "19d47d7565470dff",
+        "name": "OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1290,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e1321260e2ef387a",
+        "type": "http in",
+        "z": "19d47d7565470dff",
+        "name": "Get address by id",
+        "url": "/address",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "ecf56cea77b7fc45"
+            ]
+        ]
+    },
+    {
+        "id": "a1c04071753d53d4",
+        "type": "mongodb4",
+        "z": "19d47d7565470dff",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "addresses",
+        "operation": "findOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "",
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "2dd13d0a724e1bfb"
+            ]
+        ]
+    },
+    {
+        "id": "2dd13d0a724e1bfb",
+        "type": "switch",
+        "z": "19d47d7565470dff",
+        "name": "Check if address exists",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 140,
+        "wires": [
+            [
+                "614b06498e414634"
+            ],
+            [
+                "6048ba6444209cd2"
+            ]
+        ]
+    },
+    {
+        "id": "614b06498e414634",
+        "type": "change",
+        "z": "19d47d7565470dff",
+        "name": "Trata mensagem de erro",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Endereço não encontrado!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 120,
+        "wires": [
+            [
+                "ffcaf684a9a89088"
+            ]
+        ]
+    },
+    {
+        "id": "ffcaf684a9a89088",
+        "type": "http response",
+        "z": "19d47d7565470dff",
+        "name": "NOT FOUND",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1310,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "6048ba6444209cd2",
+        "type": "http response",
+        "z": "19d47d7565470dff",
+        "name": "OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1290,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ecf56cea77b7fc45",
+        "type": "function",
+        "z": "19d47d7565470dff",
+        "name": "Query",
+        "func": "msg.payload = [{_id: msg.req.params.id}]\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "a1c04071753d53d4"
+            ]
+        ]
+    },
+    {
+        "id": "b854cddf765319fc",
+        "type": "mongodb4-client",
+        "name": "usercontrol",
+        "protocol": "mongodb",
+        "hostname": "localhost",
+        "port": "27017",
+        "dbName": "usercontrol",
+        "appName": "UserControl",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    }
+]
