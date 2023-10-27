@@ -191,6 +191,54 @@
         ]
     },
     {
+        "id": "64c0d85efb53d886",
+        "type": "http in",
+        "z": "19d47d7565470dff",
+        "name": "Create new Address",
+        "url": "/address",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "072c01b4a76e2bb3"
+            ]
+        ]
+    },
+    {
+        "id": "072c01b4a76e2bb3",
+        "type": "mongodb4",
+        "z": "19d47d7565470dff",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "addresses",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Create new address",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "51da932686a2dfa6"
+            ]
+        ]
+    },
+    {
+        "id": "51da932686a2dfa6",
+        "type": "http response",
+        "z": "19d47d7565470dff",
+        "name": "CREATED",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1310,
+        "y": 280,
+        "wires": []
+    },
+    {
         "id": "b854cddf765319fc",
         "type": "mongodb4-client",
         "name": "usercontrol",
