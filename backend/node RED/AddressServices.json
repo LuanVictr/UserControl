@@ -1,0 +1,82 @@
+[
+    {
+        "id": "19d47d7565470dff",
+        "type": "tab",
+        "label": "AddressServices",
+        "disabled": false,
+        "info": "Fluxo destinado ao CRUD de endereços.",
+        "env": []
+    },
+    {
+        "id": "eefe6e2583b89d72",
+        "type": "http in",
+        "z": "19d47d7565470dff",
+        "name": "Get all adresses",
+        "url": "/address",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "420700625e0286a9"
+            ]
+        ]
+    },
+    {
+        "id": "420700625e0286a9",
+        "type": "mongodb4",
+        "z": "19d47d7565470dff",
+        "clientNode": "b854cddf765319fc",
+        "mode": "collection",
+        "collection": "addresses",
+        "operation": "find",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "Find All Addresses",
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "c7891bf47ea96d26"
+            ]
+        ]
+    },
+    {
+        "id": "c7891bf47ea96d26",
+        "type": "http response",
+        "z": "19d47d7565470dff",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 970,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b854cddf765319fc",
+        "type": "mongodb4-client",
+        "name": "usercontrol",
+        "protocol": "mongodb",
+        "hostname": "localhost",
+        "port": "27017",
+        "dbName": "usercontrol",
+        "appName": "UserControl",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    }
+]
