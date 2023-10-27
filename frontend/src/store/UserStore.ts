@@ -1,20 +1,27 @@
 import { defineStore } from "pinia";
-import IUser from "../interfaces/IUser";
+import IUserSaved from "../interfaces/IUserSaved";
 
 const useUserStore = defineStore({
   id: 'user',
   state: () => ({
-    user: {}
+    userData: {},
+    tokenValue: ''
   }),
 
   getters: {
-    user: (state) => state.user,
+    user: (state) => state.userData,
+    token: (state) => state.tokenValue,
   },
 
   actions: {
-    setUser(user:IUser) {
-      this.user = user;
+    setUser(user:IUserSaved) {
+      this.userData = user;
+    },
+    setToken(token:string) {
+      this.tokenValue = token;
     }
   }
   
-})
+});
+
+export default useUserStore;

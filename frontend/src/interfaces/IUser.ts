@@ -1,7 +1,7 @@
-
-interface IUser {
-  email: string;
-  role: string;
+interface IUSer {
+  email:string;
+  password:string;
+  role?:string;
 }
 
-export default IUser;
+export default IUSer;
