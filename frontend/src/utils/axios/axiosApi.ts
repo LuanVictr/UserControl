@@ -13,5 +13,10 @@ export const requestLogin = async (body:IUser):Promise<IUserResponse> => {
 
 export const requestUserCriation = async (body:IUser) => {
   const { data } = await api.post('/users', body);
-  return data
+  return data;
+}
+
+export const requestAddresses = async () => {
+  const { data } = await api.get('/address');
+  return data;
 }
