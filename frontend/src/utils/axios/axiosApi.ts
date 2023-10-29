@@ -1,3 +1,4 @@
+import IAddress from "@/src/interfaces/IAddress";
 import IUserResponse from "@/src/interfaces/ILoginResponse";
 import IUser from "@/src/interfaces/IUser";
 import axios from "axios";
@@ -18,5 +19,10 @@ export const requestUserCriation = async (body:IUser) => {
 
 export const requestAddresses = async () => {
   const { data } = await api.get('/address');
+  return data;
+}
+
+export const requestAddressCreation = async (body:IAddress) => {
+  const { data } = await api.post('/address', body);
   return data;
 }
